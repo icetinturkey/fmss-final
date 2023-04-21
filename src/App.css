@@ -1,0 +1,18 @@
+
+.container {
+  background-color: rgba(255,255,255,.3);
+  max-width: 1250px;
+
+
+  /*height:100vh;*/
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  border-radius: 14px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  font-size: 15px;
+  font-weight: 500;
+}
