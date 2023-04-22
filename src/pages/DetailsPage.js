@@ -1,11 +1,18 @@
 import { motion } from "framer-motion";
+import {Link,useNavigate} from "react-router-dom";
 import React from "react";
 function DetailsPage() {
+    const navigate = useNavigate();
     return (
         <div className="overflow-hidden py-2">
         <motion.div initial={{ scale: 0.1, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.1, opacity: 0 }}>
             {/* TOP BAR - start */}
             <div className="flex flex-row border-b border-white/40 pb-2">
+                <div className="w-56 md:w-48 pr-2">
+                    <Link to="/" className="back-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" className="h-7 w-7 -rotate-90 fill-gray-800 dark:fill-slate-200 mx-auto"><path d="M318.002 145.592C314.189 154.342 305.549 159.998 296.002 159.998H216V487.998C216 501.248 205.25 511.998 192 511.998H24C10.75 511.998 0 501.248 0 487.998S10.75 463.998 24 463.998H168V159.998H88.002C78.455 159.998 69.814 154.342 66.002 145.592S63.924 126.654 70.408 119.67L174.408 7.67C183.906 -2.557 200.096 -2.557 209.596 7.67L313.596 119.67C320.08 126.654 321.814 136.842 318.002 145.592Z"/></svg>
+                    </Link>
+                </div>
                 <div className="w-full flex flex-col justify-center">
                     <div className="flex justify-center">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" className="fill-gray-800 dark:fill-slate-200 h-7 w-7 md:h-8 md:w-8">

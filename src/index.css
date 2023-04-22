@@ -5,6 +5,9 @@
   .btn-blue {
     @apply text-white/[.9] text-sm rounded-lg p-3 bg-black/[.7] hover:bg-black/[.8] dark:bg-white/[.8] dark:text-black/[.8] dark:hover:bg-white/[.9] disabled:bg-blue-300 disabled:cursor-not-allowed;
   }
+  .footer-item{
+    @apply transition scale-75 hover:scale-100 h-12 w-48;
+  }
 }
 .svg {
   position: fixed;
@@ -142,6 +145,14 @@ select::-ms-expand {
 .head:hover:before{
   transform: scale(26);
 }
-.head p:first-child{
-
+/*.footer-item{
+  transform: scale(.7);
+  transition: transform 0.25s ease-out;
+}
+.test:hover{
+  transform:scale(1);
+}*/
+.back-btn:hover svg{
+  transition: transform 0.25s ease-out;
+  transform: scale(1.2) rotate(270deg);
 }

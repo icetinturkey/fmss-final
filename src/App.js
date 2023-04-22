@@ -1,4 +1,4 @@
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import './App.css';
 import Homepage from "./pages/Homepage";
 import DetailsPage from "./pages/DetailsPage";
@@ -6,6 +6,7 @@ import SearchPage from "./pages/SearchPage";
 import { motion,AnimatePresence } from "framer-motion";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import NoMatch from "./pages/NoMatch";
 
 function App() {
   return (
@@ -26,8 +27,11 @@ function App() {
             <AnimatePresence mode="wait">
             <Routes>
                 <Route path="/" element={<Homepage />} />
+                <Route path="detail" element={<Navigate to='/' />} />
                 <Route path="detail/:id" element={<DetailsPage />} />
+                <Route path="search" element={<Navigate to='/' />} />
                 <Route path="search/:txt" element={<SearchPage />} />
+                <Route path="*" element={<NoMatch />} />
             </Routes>
             </AnimatePresence>
             <Footer />
