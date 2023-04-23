@@ -7,3 +7,7 @@ export const searchShips = async ({ queryKey }) => {
     const res = await axios.get(process.env.REACT_APP_URL + "?search=" + queryKey[1].replace(/-/g,' '))
     return res.data
 }
+export const detailShip = async ({ queryKey }) => {
+    const res = await axios.get(process.env.REACT_APP_URL + queryKey[1])
+    return res.data
+}

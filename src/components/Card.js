@@ -4,16 +4,16 @@ import ship1 from "../resources/ship1.svg";
 import ship2 from "../resources/ship2.svg";
 import ship3 from "../resources/ship3.svg";
 
-
 function Card({data}) {
-    const shipL = parseFloat(data.length.replace(/,/g,''));
+    const shipLen = parseFloat(data.length.replace(/,/g,''));
     const rating = data.hyperdrive_rating!=="unknown"?parseFloat(data.hyperdrive_rating)*10:0;
     const progress = (parseInt((128*rating)/60)).toString() + "px";
+    const shipUrl = data.url.substring(32).replace(/\//g,'')+'-'+data.name.replace(/ /g,'-');
 
     return(
-        <Link to={`detail/${data.url.substring(32)}`} className="mx-auto relative my-8">
+        <Link to={`../detail/${shipUrl}`} className="mx-auto relative my-8">
             <div className="z-20 text-white flex items-center absolute rounded-full py-4 px-4 shadow-xl bg-sky-100 left-4 -top-6">
-                <img src={shipL<100?ship0:shipL<1000?ship1:shipL<10000?ship2:ship3} className="h-8 w-8" />
+                <img src={shipLen<100?ship0:shipLen<1000?ship1:shipLen<10000?ship2:ship3} className="h-8 w-8" />
             </div>
         <div className="head relative bg-slate-50 dark:bg-slate-800 pt-12 px-6 rounded-3xl w-64 shadow-xl">
             <div className="z-20 h-full flex flex-col justify-between pb-4">

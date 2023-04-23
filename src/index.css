@@ -34,7 +34,7 @@ body {
 }
 @font-face {
   font-family: "Exo2";
-  src: local("Exo2"), url("./resources/Exo2-Thin.ttf") format("truetype");
+  src: local("Exo2"), url("./resources/Exo2-Light.ttf") format("truetype");
   font-weight: 100;
 }
 @font-face {
@@ -155,4 +155,41 @@ select::-ms-expand {
 .back-btn:hover svg{
   transition: transform 0.25s ease-out;
   transform: scale(1.2) rotate(270deg);
+}
+.dskew{
+  transform: skew(0, -10deg);
+}
+.title{
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: clamp(2rem, 5vw, 2.6rem);
+  line-height: 0.75em;
+  text-align: center;
+  text-shadow: 3px 1px 1px #9e7df8, 2px 2px 1px #370a68, 4px 2px 1px #9e7df8,
+  3px 3px 1px #370a68, 5px 3px 1px #9e7df8, 4px 4px 1px #370a68,
+  6px 4px 1px #9e7df8, 5px 5px 1px #370a68, 7px 5px 1px #9e7df8,
+  6px 6px 1px #370a68, 8px 6px 1px #9e7df8, 7px 7px 1px #370a68,
+  9px 7px 1px #9e7df8;
+}
+.title span{
+  display: block;
+  position: relative;
+}
+.title span:before{
+  content: attr(data-text);
+  position: absolute;
+  text-shadow: 2px 2px 1px #ddc9e2, -1px -1px 1px #e7d9f8,
+  -2px 2px 1px #e7d9f8, 1px -1px 1px #ddc9e2;
+  z-index: 1;
+}
+body.dark .title{
+  text-shadow: 3px 1px 1px #7dc7f8, 2px 2px 1px #0a1e68, 4px 2px 1px #7dc7f8,
+  3px 3px 1px #0a1e68, 5px 3px 1px #7dc7f8, 4px 4px 1px #0a1e68,
+  6px 4px 1px #7dc7f8, 5px 5px 1px #0a1e68, 7px 5px 1px #7dc7f8,
+  6px 6px 1px #0a1e68, 8px 6px 1px #7dc7f8, 7px 7px 1px #0a1e68,
+  9px 7px 1px #0a1e68 !important;
+}
+body.dark .title span:before{
+  text-shadow: 2px 2px 1px #5b6cfd, -1px -1px 1px #00037d,
+  -2px 2px 1px #00037d, 1px -1px 1px #5b6cfd !important;
 }

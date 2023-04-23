@@ -1,9 +1,29 @@
 import { motion } from "framer-motion";
-import {Link,useNavigate} from "react-router-dom";
+import {Link,useParams} from "react-router-dom";
 import React from "react";
+import { useQuery } from '@tanstack/react-query';
+import {detailShip} from "../utils/GetData";
+import ship0 from "../resources/ship0.svg";
+import ship1 from "../resources/ship1.svg";
+import ship2 from "../resources/ship2.svg";
+import ship3 from "../resources/ship3.svg";
+
 function DetailsPage() {
-    const navigate = useNavigate();
-    return (
+    const { id } = useParams();
+    const shipId = id.split("-")[0];
+    const { isPending,isFetching, isError, data, error } = useQuery({
+        queryKey: ['detailing',shipId],
+        queryFn: detailShip,
+    });
+    let shipLen=0.0;
+    let shipName=[];
+    if(!isFetching){
+        shipLen = parseFloat(data.length.replace(/,/g,''));
+        shipName = data.name.split(' ');
+    }
+    return isFetching ? (
+        <div className="w-8 h-8 animate-spin mx-auto my-12"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" className="fill-gray-800 dark:fill-slate-50"><path d="M496 256C496 293.785 487.129 329.438 471.535 361.211C467.527 369.373 457.125 372.121 449.25 367.574L421.447 351.521C414.057 347.254 411.686 338.127 415.322 330.406C425.971 307.795 432 282.609 432 256C432 164.08 361.17 88.393 271.223 80.652C262.732 79.922 256 73.312 256 64.791V32.734C256 23.617 263.668 15.949 272.764 16.576C397.492 25.182 496 129.086 496 256Z"/></svg></div>
+    ) : (
         <div className="overflow-hidden py-2">
         <motion.div initial={{ scale: 0.1, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.1, opacity: 0 }}>
             {/* TOP BAR - start */}
@@ -23,9 +43,38 @@ function DetailsPage() {
                 </div>
             </div>
             {/* TOP BAR - end */}
-            <h3>DetailsPage works !</h3>
-            <p>Proin maximus leo vel libero dapibus laoreet. Fusce vel magna et massa semper sagittis eget a nulla. Cras libero metus, malesuada quis purus non, maximus malesuada urna. Phasellus vel dui eros. Donec et aliquet turpis, a aliquet odio. Morbi tincidunt ante a sapien ullamcorper, eu placerat risus cursus. Maecenas egestas dictum iaculis. Nulla sit amet sapien eleifend, volutpat dui ac, commodo quam. Suspendisse dignissim purus id tempus finibus. Maecenas blandit nunc in erat pulvinar, in fermentum diam dictum.</p>
-            <img src="https://arabam-blog.mncdn.com/wp-content/uploads/2020/12/a2ae6bfb195a800229e7b8402be3c094-1024x681.jpg" alt="araba" />
+            <div className="flex flex-col md:flex-row w-full">
+                <div className="w-full md:w-1/2 p-20">
+                    <img src={shipLen<100?ship0:shipLen<1000?ship1:shipLen<10000?ship2:ship3} alt="banner_img" className="dark:invert" />
+                </div>
+                <div className="w-full md:w-1/2 px-4">
+                    <div className="grid items-center justify-center dskew mt-0 md:mt-12">
+                        <h1 className="title text-slate-600 dark:text-slate-200">
+                            {shipName.map((word,i)=>(
+                                <span key={i} data-text={word}>{word}</span>
+                            ))}
+                        </h1>
+                    </div>
+                    <table className="my-12 w-full rounded-lg bg-slate-50/[.3] border-separate border-spacing-1">
+                        <thead>
+                        <tr>
+                            <th colSpan="2" className="">Specifications</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {Object.keys(data).map((key, index) => {
+                            return key!=="name"&&key!=="pilots"&&key!=="films"&&key!=="created"&&key!=="edited"&&key!=="url" ? (
+                                <tr key={index}>
+                                    <td className="capitalize">{key.replace(/_/g,' ')}</td>
+                                    <td className="capitalize font-light">{data[key]}</td>
+                                </tr>
+                            ):undefined;
+                        })}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
         </motion.div>
     </div>
     );

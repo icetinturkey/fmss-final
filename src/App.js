@@ -10,7 +10,7 @@ import NoMatch from "./pages/NoMatch";
 
 function App() {
   return (
-    <div className="flex justify-center m-4">
+    <div className="flex justify-center m-0 sm:m-4">
         <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" className="svg" viewBox="10 10 80 80">
             <motion.path className="fill-cyan-500 dark:fill-cyan-600" animate={{rotate: [0, 360]}} transition={{duration: 20,ease: "easeInOut",times: [0, 1],repeat: Infinity,repeatDelay: 1}}
                   d="M37-5C25.1-14.7,5.7-19.1-9.2-10-28.5,1.8-32.7,31.1-19.8,49c15.5,21.5,52.6,22,67.2,2.3C59.4,35,53.7,8.5,37-5Z"/>
@@ -22,7 +22,7 @@ function App() {
                   d="M102,67.1c-9.6-6.1-22-3.1-29.5,2-15.4,10.7-19.6,37.5-7.6,47.8s35.9,3.9,44.5-12.5C115.5,92.6,113.9,74.6,102,67.1Z"/>
         </svg>
 
-        <div className="bg-white/30 dark:bg-black/40 max-w-screen-xl rounded-xl backdrop-blur-md">
+        <div className="w-full sm:w-auto bg-white/30 dark:bg-black/40 max-w-screen-xl rounded-none sm:rounded-xl backdrop-blur-md">
             <Header />
             <AnimatePresence mode="wait">
             <Routes>
