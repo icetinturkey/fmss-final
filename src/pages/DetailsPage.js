@@ -11,7 +11,7 @@ import ship3 from "../resources/ship3.svg";
 function DetailsPage() {
     const { id } = useParams();
     const shipId = id.split("-")[0];
-    const { isPending,isFetching, isError, data, error } = useQuery({
+    const { isFetching, data } = useQuery({
         queryKey: ['detailing',shipId],
         queryFn: detailShip,
     });
@@ -74,7 +74,6 @@ function DetailsPage() {
                     </table>
                 </div>
             </div>
-
         </motion.div>
     </div>
     );

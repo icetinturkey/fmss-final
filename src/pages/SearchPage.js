@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
-import {Routes, Route, useParams, useNavigate, Link} from 'react-router-dom';
-import React, {useState,useEffect} from "react";
+import {useParams, Link} from 'react-router-dom';
+import React, {useState} from "react";
 import {searchShips} from "../utils/GetData";
 import Card from "../components/Card";
 import { useQuery } from '@tanstack/react-query';
@@ -9,14 +9,10 @@ import {dynamicSort} from "../utils/DynamicSort";
 function SearchPage() {
     const { txt } = useParams();
     const [sorting, setSorting] = useState("name");
-    const { isFetching, isError, data, error } = useQuery({
+    const { isFetching, data } = useQuery({
         queryKey: ['searchers',txt],
         queryFn: searchShips,
     });
-
-
-
-
     return isFetching? (
         <div className="w-8 h-8 animate-spin mx-auto my-12"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" className="fill-gray-800 dark:fill-slate-50"><path d="M496 256C496 293.785 487.129 329.438 471.535 361.211C467.527 369.373 457.125 372.121 449.25 367.574L421.447 351.521C414.057 347.254 411.686 338.127 415.322 330.406C425.971 307.795 432 282.609 432 256C432 164.08 361.17 88.393 271.223 80.652C262.732 79.922 256 73.312 256 64.791V32.734C256 23.617 263.668 15.949 272.764 16.576C397.492 25.182 496 129.086 496 256Z"/></svg></div>
     ) : (
@@ -59,6 +55,7 @@ function SearchPage() {
                         <Card key={i} data={ship} />
                     ))}
                 </div>
+                {parseInt(data.results.length)<1 && <div className="text-center my-20 dark:text-slate-50">Search result not found!</div>}
             </motion.div>
         </div>
     );

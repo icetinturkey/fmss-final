@@ -9,23 +9,19 @@
     @apply transition scale-75 hover:scale-100 h-12 w-48;
   }
 }
-.svg {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-}
 body {
   --bg: rgb(6, 182, 212), rgb(59, 130, 246);
+  margin: 0;
+  font-family: "Exo2",-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-image: linear-gradient(to right, var(--bg));
 }
 body.dark {
   --bg: rgb(14, 164, 189), rgb(29, 91, 192);
 }
-body {
-  background-image: linear-gradient(to right, var(--bg));
-}
-
 @font-face {
   font-family: "Star Jedi Outline";
   src: local("Star Jedi Outline"),
@@ -47,19 +43,6 @@ body {
   src: local("Exo2"), url("./resources/Exo2-ExtraBold.ttf") format("truetype");
   font-weight: 700;
 }
-body {
-  margin: 0;
-  font-family: "Exo2",-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
 .btn-search{
   line-height: 1px;
   height:30px;
@@ -67,7 +50,6 @@ code {
   right: 0.375rem;
   bottom: 0.375rem;
 }
-/* Reset Select */
 select {
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -77,29 +59,24 @@ select {
   box-shadow: none;
   border: 0 !important;
   background-image: none;
-}
-/* Custom Select */
-.select {
-  position: relative;
-  display: block;
-  height: 42px;
-
-  overflow: hidden;
-  border-radius: .4em;
-  border:1px solid rgba(255,255,255,.7);
-  max-width:150px;
-}
-select {
   width: 100%;
   height: 100%;
   margin: 0;
   padding: 0 0 0 2.5em;
   cursor: pointer;
 }
+.select {
+  position: relative;
+  display: block;
+  height: 42px;
+  overflow: hidden;
+  border-radius: .4em;
+  border:1px solid rgba(255,255,255,.7);
+  max-width:150px;
+}
 select::-ms-expand {
   display: none;
 }
-/* Arrow */
 .select::after {
   content: '\25BC';
   position: absolute;
@@ -111,7 +88,6 @@ select::-ms-expand {
   pointer-events: none;
   color:#eee;
 }
-/* Transition */
 .select:hover::after {
   color: #fff;
 }
@@ -145,13 +121,6 @@ select::-ms-expand {
 .head:hover:before{
   transform: scale(26);
 }
-/*.footer-item{
-  transform: scale(.7);
-  transition: transform 0.25s ease-out;
-}
-.test:hover{
-  transform:scale(1);
-}*/
 .back-btn:hover svg{
   transition: transform 0.25s ease-out;
   transform: scale(1.2) rotate(270deg);

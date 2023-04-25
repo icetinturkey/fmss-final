@@ -1,7 +1,7 @@
-import React,{useMemo} from 'react';
+import React from 'react';
 import { motion } from "framer-motion";
 import { useInfiniteQuery } from '@tanstack/react-query'
-import {useState,useEffect} from "react";
+import {useState} from "react";
 import Card from "../components/Card";
 import {fetchShips} from "../utils/GetData";
 import {dynamicSort} from "../utils/DynamicSort";
@@ -13,7 +13,6 @@ function Homepage() {
         error,
         fetchNextPage,
         hasNextPage,
-        isFetching,
         isFetchingNextPage,
         status,
     } = useInfiniteQuery({
