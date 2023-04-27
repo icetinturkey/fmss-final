@@ -8,6 +8,8 @@ export const searchShips = async ({ queryKey }) => {
     return res.data
 }
 export const detailShip = async ({ queryKey }) => {
-    const res = await axios.get(process.env.REACT_APP_URL + queryKey[1])
+    const res = await axios.get(process.env.REACT_APP_URL + queryKey[1]).catch(function (error) {
+        throw new Error(error.message);
+    });
     return res.data
 }

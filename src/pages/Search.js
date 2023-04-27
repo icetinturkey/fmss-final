@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { Reorder } from "framer-motion";
 import {useParams, Link} from 'react-router-dom';
 import React, {useState} from "react";
 import {searchShips} from "../utils/GetData";
@@ -6,7 +6,7 @@ import Card from "../components/Card";
 import { useQuery } from '@tanstack/react-query';
 import {dynamicSort} from "../utils/DynamicSort";
 
-function SearchPage() {
+function Search() {
     const { txt } = useParams();
     const [sorting, setSorting] = useState("name");
     const { isFetching, data } = useQuery({
@@ -17,7 +17,6 @@ function SearchPage() {
         <div className="w-8 h-8 animate-spin mx-auto my-12"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" className="fill-gray-800 dark:fill-slate-50"><path d="M496 256C496 293.785 487.129 329.438 471.535 361.211C467.527 369.373 457.125 372.121 449.25 367.574L421.447 351.521C414.057 347.254 411.686 338.127 415.322 330.406C425.971 307.795 432 282.609 432 256C432 164.08 361.17 88.393 271.223 80.652C262.732 79.922 256 73.312 256 64.791V32.734C256 23.617 263.668 15.949 272.764 16.576C397.492 25.182 496 129.086 496 256Z"/></svg></div>
     ) : (
         <div className="overflow-hidden py-2">
-            <motion.div initial={{ scale: 0.1, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.1, opacity: 0 }}>
                 {/* TOP BAR - start */}
                 <div className="flex flex-row border-b border-white/40 pb-2">
                     <div className="w-56 md:w-48 pr-2 flex flex-col justify-center">
@@ -50,15 +49,13 @@ function SearchPage() {
                     </div>
                 </div>
                 {/* TOP BAR - end */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 px-4 gap-4">
-                    {data.results.sort(dynamicSort(sorting)).map((ship,i)=>(
-                        <Card key={i} data={ship} />
-                    ))}
-                </div>
-                {parseInt(data.results.length)<1 && <div className="text-center my-20 dark:text-slate-50">Search result not found!</div>}
-            </motion.div>
+            <Reorder.Group axis="y" values={data.results} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 px-4 gap-4">
+                {data.results.sort(dynamicSort(sorting)).map((ship,i) => (
+                    <Card key={ship.name} data={ship} />
+                ))}
+            </Reorder.Group>
+            {parseInt(data.results.length)<1 && <div className="text-center my-20 dark:text-slate-50">Search result not found!</div>}
         </div>
     );
 }
-
-export default SearchPage;
+export default Search;
