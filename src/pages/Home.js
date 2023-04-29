@@ -59,7 +59,7 @@ function Home() {
                     </div>
                 </div>
                 {/* TOP BAR - end */}
-                <Reorder.Group axis="y" values={data.total} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 px-4 gap-4">
+                <Reorder.Group values={data.total} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 px-4 gap-4">
                     {data.total.sort(dynamicSort(sorting)).map((ship,i) => (
                         <Card key={ship.name} data={ship} />
                     ))}

@@ -21,13 +21,13 @@ function App() {
             </svg>
             {/* BACKGROUND IMAGE - end */}
             <div className="w-full sm:w-auto bg-white/30 dark:bg-black/40 max-w-screen-xl rounded-none sm:rounded-xl backdrop-blur-md z-10">
-            <Header />
-            <AnimatePresence mode="wait">
+                <Header />
+                <AnimatePresence mode="wait">
                 <motion.div key={location.pathname} initial={{ opacity: 0, scale: 0.1 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.1 }}>
                     <AnimatedOutlet />
                 </motion.div>
-            </AnimatePresence>
-            <Footer />
+                </AnimatePresence>
+                <Footer />
             </div>
         </div>
     )

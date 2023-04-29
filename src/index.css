@@ -8,6 +8,18 @@
   .footer-item{
     @apply transition scale-75 hover:scale-100 h-12 w-48;
   }
+  .tooltip{
+    @apply w-80 z-40 -left-56 md:-left-64 text-gray-700 top-10 absolute shadow-lg bg-blue-100 dark:text-gray-100 dark:bg-purple-950 p-4 rounded transition duration-300;
+  }
+}
+*{
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0) !important;
+}
+input,textarea,button,select,a{
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0) !important;
+}
+a:focus,a:visited,a:active{
+  outline:none !important;
 }
 body {
   --bg: rgb(6, 182, 212), rgb(59, 130, 246);
@@ -161,4 +173,19 @@ body.dark .title{
 body.dark .title span:before{
   text-shadow: 2px 2px 1px #5b6cfd, -1px -1px 1px #00037d,
   -2px 2px 1px #00037d, 1px -1px 1px #5b6cfd !important;
+}
+.tooltip:after{
+  content: '';
+  height: 20px;
+  width: 20px;
+  background: rgb(219, 234, 254);
+  transform: rotate(45deg);
+  position: absolute;
+  left:71%;
+  top:-3px;
+  transition: opacity .3s;
+}
+body.dark .tooltip:after{background:rgb(59, 7, 100);}
+@media (min-width: 768px) {
+  .tooltip:after{left:81%;}
 }

@@ -12,7 +12,7 @@ function Card({data}) {
     const shipUrl = data.url.substring(32).replace(/\//g,'')+'-'+data.name.replace(/ /g,'-');
 
     return(
-        <Reorder.Item value={data.name} id={data.name} className="mx-auto relative my-8">
+        <Reorder.Item value={data.name} id={data.name} className="mx-auto relative my-8" dragListener={false}>
         <Link to={`../detail/${shipUrl}`}>
         <div className="z-20 text-white flex items-center absolute rounded-full py-4 px-4 shadow-xl bg-sky-100 left-4 -top-6">
             <img src={shipLen<100?ship0:shipLen<1000?ship1:shipLen<10000?ship2:ship3} className="h-8 w-8" alt="shipicon" />

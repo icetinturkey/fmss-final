@@ -1,6 +1,6 @@
 ## ReactJS-Starship-Finder
 
-![Image](https://download.vadi.info/fmss-final.jpg)
+![Image](https://download.vadi.info/fmss-final2.jpg)
 
 This application is a ReactJS application that allows you to find Star Wars ships and get more detailed information about them.
 

@@ -5,6 +5,7 @@ import {searchShips} from "../utils/GetData";
 import Card from "../components/Card";
 import { useQuery } from '@tanstack/react-query';
 import {dynamicSort} from "../utils/DynamicSort";
+import exclamation from "../resources/exclamation.svg";
 
 function Search() {
     const { txt } = useParams();
@@ -49,12 +50,12 @@ function Search() {
                     </div>
                 </div>
                 {/* TOP BAR - end */}
-            <Reorder.Group axis="y" values={data.results} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 px-4 gap-4">
+            <Reorder.Group values={data.results} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 px-4 gap-4">
                 {data.results.sort(dynamicSort(sorting)).map((ship,i) => (
                     <Card key={ship.name} data={ship} />
                 ))}
             </Reorder.Group>
-            {parseInt(data.results.length)<1 && <div className="text-center my-20 dark:text-slate-50">Search result not found!</div>}
+            {parseInt(data.results.length)<1 && <div className="text-center dark:text-slate-50 my-20"><div className="flex justify-center"><img src={exclamation} alt="eicon" className="w-20 h-20 dark:invert" /></div><div className="mt-1">Search result not found !</div></div>}
         </div>
     );
 }

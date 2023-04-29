@@ -1,8 +1,13 @@
+import React from 'react';
 import { motion } from "framer-motion";
 import sun from '../resources/sun.svg';
 import moon from '../resources/moon.svg';
 import {useState,useEffect,useRef} from "react";
 import { useNavigate,useLocation } from "react-router-dom";
+import ship0 from "../resources/ship0.svg";
+import ship1 from "../resources/ship1.svg";
+import ship2 from "../resources/ship2.svg";
+import ship3 from "../resources/ship3.svg";
 
 function Header() {
     const location = useLocation();
@@ -12,12 +17,14 @@ function Header() {
     }
     const letters = ['S','T','A','R','W','A','R','S'];
     const [dark, setDark] = useState(false);
+    const [tooltip, setTooltip] = useState(false);
     const navigate = useNavigate();
     useEffect(()=>{
         if (localStorage.getItem('dark')){
             document.body.classList.add('dark');
             setDark(true);
         }
+        window.addEventListener('scroll', () => {setTooltip(false)});
     },[]);
     const changeTheme = () => {
         if(dark) localStorage.removeItem("dark");
@@ -29,6 +36,9 @@ function Header() {
         e.preventDefault();
         const searched = e.currentTarget.elements.text.value.replace(/ /g,'-');
         navigate("/search/"+searched);
+    }
+    const openTooltip = () => {
+        setTooltip(!tooltip);
     }
     return (
         <div className="border-b border-white/[.4] grid grid-cols-1 md:grid-cols-6">
@@ -54,14 +64,30 @@ function Header() {
             </div>
             <div className="h-14 flex items-center justify-evenly">
                 <motion.button whileTap={{ scale: 0.8 }} whileHover={{ scale: 1.2 }} type="button" className="w-6 h-6" onClick={changeTheme}><img className="w-full h-full block" src={dark?sun:moon} alt="" /></motion.button>
-                <motion.a href="https://github.com/icetinturkey" target="_blank" rel="noreferrer" className="w-6 h-6" whileTap={{ scale: 0.8 }} whileHover={{ scale: 1.2 }}>
-                    <svg xmlns="http://www.w3.org/2000/svg" className="w-full h-full block fill-gray-800 dark:fill-slate-200" viewBox="0 0 496 512">
-                        <path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/>
-                    </svg>
-                </motion.a>
+                {/* TOOLTIP - start */}
+                <button className="relative" onClick={openTooltip}>
+                    <motion.svg whileTap={{ scale: 0.8 }} whileHover={{ scale: 1.2 }} xmlns="http://www.w3.org/2000/svg" className="w-6 h-6 block fill-gray-800 dark:fill-slate-200" viewBox="0 0 512 512">
+                        <path d="M256 16C123.451 16 16 123.451 16 256S123.451 496 256 496S496 388.549 496 256S388.549 16 256 16ZM256 448C150.131 448 64 361.869 64 256S150.131 64 256 64S448 150.131 448 256S361.869 448 256 448ZM296 336H280V248C280 234.75 269.25 224 256 224H224C210.75 224 200 234.75 200 248S210.75 272 224 272H232V336H216C202.75 336 192 346.75 192 360S202.75 384 216 384H296C309.25 384 320 373.25 320 360S309.25 336 296 336ZM256 192C273.674 192 288 177.672 288 160C288 142.326 273.674 128 256 128S224 142.326 224 160C224 177.672 238.326 192 256 192Z"/>
+                    </motion.svg>
+                    <div className="tooltip" style={{opacity:`${tooltip?'1':'0'}`,visibility:`${tooltip?'visible':'hidden'}`}}>
+                        <div className="font-font1 tracking-widest">ship lengths</div>
+                        <div className="flex justify-center text-xs">
+                            <table>
+                                <thead>
+                                <tr><td><img src={ship0} className="w-6 h-6 dark:invert mx-2" alt="icon1" /></td><td>Less than 100 meters</td></tr>
+                                <tr><td><img src={ship1} className="w-6 h-6 dark:invert mx-2" alt="icon2" /></td><td>Between 100~999 meters</td></tr>
+                                <tr><td><img src={ship2} className="w-6 h-6 dark:invert mx-2" alt="icon3" /></td><td>Between 1000~9999 meters</td></tr>
+                                <tr><td><img src={ship3} className="w-6 h-6 dark:invert mx-2" alt="icon4" /></td><td>Greater than 10000 meters</td></tr>
+                                </thead>
+                            </table>
+                        </div>
+                        <div className="mt-3 font-font1 text-xs tracking-widest">Powered by React {React.version}</div>
+                        <div className="mt-2 italic text-xs text-black dark:text-white font-thin">Tap here for close this bubble.</div>
+                    </div>
+                </button>
+                {/* TOOLTIP - start */}
             </div>
         </div>
     );
 }
-
 export default Header;
